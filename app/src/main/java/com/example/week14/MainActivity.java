@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             tvMP3.setText("재생중인 음악: " + selectedMP3);
                             mediaPlayer.prepare();
                             mediaPlayer.start();
-                            new MyThread().start();
+                            new MyThread().start(); // 이 부분이 문제
                         } catch (IOException ex) { ex.printStackTrace(); }
                     } else { // isFirst = false;
                         mediaPlayer.start();

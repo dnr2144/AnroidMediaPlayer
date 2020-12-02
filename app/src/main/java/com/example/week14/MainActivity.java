@@ -55,11 +55,11 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             if(mediaPlayer == null) return;
 
+            seekBar1.setMax(mediaPlayer.getDuration());
             while(mediaPlayer.isPlaying()) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        seekBar1.setMax(mediaPlayer.getDuration());
                         seekBar1.setProgress(mediaPlayer.getCurrentPosition());
                         tvNowState.setText(simpleDateFormat.format(mediaPlayer.getCurrentPosition()));
                     }
@@ -102,16 +102,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedMP3 = mp3List.get(position);
-                isFirst = false;
+                if(!isFirst) isFirst = false;
+
                 try{
                     btnPlay.setText("❚❚");
                     tvMP3.setText("재생중인 음악: " + selectedMP3);
-                    mediaPlayer.stop();
                     mediaPlayer.reset();
                     mediaPlayer.setDataSource(mp3Path + "/" + selectedMP3 );
                     mediaPlayer.prepare();
                     mediaPlayer.start();
-                  //  new MyThread().start();
+                    new MyThread().start();
                 } catch (IOException ex) { ex.printStackTrace(); }
             }
         });
@@ -122,23 +122,24 @@ public class MainActivity extends AppCompatActivity {
                 if ((btnPlay.getText().toString()).equals("❚❚")) { // stop 버튼을 누른 경우
                     mediaPlayer.pause();
                     btnPlay.setText("▷");
+                    isFirst = false;
                 } else { // "▷" button을 누른 경우
                     if (isFirst) { // 리스트뷰 아이템 선택 없이 그냥 재생 버튼만 누른 경우
                         selectedMP3 = mp3List.get(0);
                         isFirst = false;
                         try {
-                            mediaPlayer.stop();
                             mediaPlayer.reset();
                             mediaPlayer.setDataSource(mp3Path + "/" + selectedMP3 );
                             btnPlay.setText("❚❚");
                             tvMP3.setText("재생중인 음악: " + selectedMP3);
                             mediaPlayer.prepare();
                             mediaPlayer.start();
-                           // new MyThread().start();
+                            new MyThread().start();
                         } catch (IOException ex) { ex.printStackTrace(); }
                     } else { // isFirst = false;
                         mediaPlayer.start();
                         btnPlay.setText("❚❚");
+                        new MyThread().start();
                     }
                 }
             }

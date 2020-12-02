@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light"
+            android:id="@+id/listViewMP3">
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:text="실행중인 음악"
+            android:gravity="center"
+            android:textStyle="bold|italic"
+            android:id="@+id/tvMP3"/>
+
+        <TextView
+            android:id="@+id/tvNowState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="현재 상태"
+            android:gravity="center" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+       <SeekBar
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:max="100"
+           android:progress="0"
+           android:id="@+id/seekBar1"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDec"
+                android:text="10씩 뒤로(↻)"
+                android:layout_marginRight="30dp"
+                android:textStyle="italic|bold"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnInc"
+                android:text="10초 앞으로(↻)"
+                android:textStyle="italic|bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="▷"
+            android:layout_marginRight="100dp"
+            android:layout_marginLeft="100dp"
+            android:textStyle="bold|italic"
+            android:id="@+id/btnPlay"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

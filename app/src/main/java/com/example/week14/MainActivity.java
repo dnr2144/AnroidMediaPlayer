@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(fromUser) {
-                    mediaPlayer.seekTo(progress);
+                    mediaPlayer.seekTo(progress); // SeekBar 직접 움직일 시, 재생구간 변경
                 }
             }
 

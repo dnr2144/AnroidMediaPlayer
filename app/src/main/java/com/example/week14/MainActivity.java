@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                         tvNowState.setText(simpleDateFormat.format(mediaPlayer.getCurrentPosition()));
                     }
                 });
-
             }
         }
     }
@@ -99,26 +98,21 @@ public class MainActivity extends AppCompatActivity {
         tvMP3.setText("재생할 노래를 선택하세요.");
         tvNowState.setText("mm:ss");
 
-
         listViewMP3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedMP3 = mp3List.get(position);
                 isFirst = false;
                 try{
+                    btnPlay.setText("❚❚");
+                    tvMP3.setText("재생중인 음악: " + selectedMP3);
                     mediaPlayer.stop();
                     mediaPlayer.reset();
                     mediaPlayer.setDataSource(mp3Path + "/" + selectedMP3 );
-                    //seekBar1.setMax(mediaPlayer.getDuration());
-                    btnPlay.setText("❚❚");
-                    tvMP3.setText("재생중인 음악: " + selectedMP3);
                     mediaPlayer.prepare();
                     mediaPlayer.start();
-                    new MyThread().start();
-                } catch (IOException ex) {
-
-                }
-
+                  //  new MyThread().start();
+                } catch (IOException ex) { ex.printStackTrace(); }
             }
         });
 
@@ -128,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 if ((btnPlay.getText().toString()).equals("❚❚")) { // stop 버튼을 누른 경우
                     mediaPlayer.pause();
                     btnPlay.setText("▷");
-                } else { // Start button을 누른 경우
+                } else { // "▷" button을 누른 경우
                     if (isFirst) { // 리스트뷰 아이템 선택 없이 그냥 재생 버튼만 누른 경우
                         selectedMP3 = mp3List.get(0);
                         isFirst = false;
@@ -136,15 +130,12 @@ public class MainActivity extends AppCompatActivity {
                             mediaPlayer.stop();
                             mediaPlayer.reset();
                             mediaPlayer.setDataSource(mp3Path + "/" + selectedMP3 );
-
                             btnPlay.setText("❚❚");
                             tvMP3.setText("재생중인 음악: " + selectedMP3);
                             mediaPlayer.prepare();
                             mediaPlayer.start();
-                            new MyThread().start();
-                        } catch (IOException ex) {
-
-                        }
+                           // new MyThread().start();
+                        } catch (IOException ex) { ex.printStackTrace(); }
                     } else { // isFirst = false;
                         mediaPlayer.start();
                         btnPlay.setText("❚❚");
@@ -157,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mediaPlayer == null) return;
+                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 10000);
             }
         });
 
@@ -164,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mediaPlayer == null) return;
-
+                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 10000);
             }
         });
 

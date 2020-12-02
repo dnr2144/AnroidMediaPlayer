@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mediaPlayer == null) return;
-                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 10000);
+                //mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 10000);
             }
         });
 

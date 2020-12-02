@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         selectedMP3 = mp3List.get(0);
         mediaPlayer = new MediaPlayer();
 
-        tvMP3 = (TextView) findViewById(R.id.tvMP3);
+        tvMP3 = (TextView) findViewById(R.id.tvMP3);;
         tvNowState = (TextView) findViewById(R.id.tvNowState);
 
         btnPlay = (Button) findViewById(R.id.btnPlay);
@@ -132,8 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     if (isFirst) { // 리스트뷰 아이템 선택 없이 그냥 재생 버튼만 누른 경우
                         selectedMP3 = mp3List.get(0);
                         isFirst = false;
-                        try{
-
+                        try {
                             mediaPlayer.stop();
                             mediaPlayer.reset();
                             mediaPlayer.setDataSource(mp3Path + "/" + selectedMP3 );
